@@ -2,7 +2,7 @@ from fastapi import Request, Response, status
 
 from app.api import BaseRouter, DashRouter
 from app.api.deps import ExampleMgt
-from app.schemas.example import CreateExampleParams, ExampleBase
+from app.models.example import CreateExampleParams, ExampleBase
 
 router = BaseRouter(route_class=DashRouter)
 

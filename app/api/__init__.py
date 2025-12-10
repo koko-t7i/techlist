@@ -23,7 +23,7 @@ class BaseRouter(APIRouter):
         responses = default
         return super().add_api_route(path, endpoint, response_model=response_model, responses=responses, **kwargs)
 
+
 class DashRouter(APIRoute):
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-        
         return super().get_route_handler()

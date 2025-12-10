@@ -5,6 +5,7 @@ import sentry_sdk
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
 from fastapi.routing import APIRoute
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from redis.asyncio import Redis
 from starlette.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import RegisterTortoise
@@ -43,6 +44,8 @@ app = FastAPI(
     generate_unique_id_function=custom_generate_unique_id,
     lifespan=lifespan,
 )
+
+FastAPIInstrumentor.instrument_app(app=app)
 
 # Set all CORS enabled origins
 app.add_middleware(

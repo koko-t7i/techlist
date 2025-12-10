@@ -1,19 +1,13 @@
-from tortoise import models, fields
+from pydantic import BaseModel, Field
 
 
-class Example(models.Model):
-    """Example model for demonstration"""
+class ExampleBase(BaseModel):
+    id: int = Field(..., description='Example ID')
+    name: str = Field(..., min_length=1, max_length=255, description='Example name')
+    description: str = Field(..., min_length=1, max_length=500, description='Example description')
 
-    id = fields.IntField(primary_key=True)
-    name = fields.CharField(max_length=255, description='Example name')
-    description = fields.CharField(max_length=500, description='Example description')
 
-    class Meta:
-        table = 'examples'
+class CreateExampleParams(BaseModel): 
+    name: str = Field(..., min_length=1, max_length=255, description='Example name')
+    description: str = Field(..., min_length=1, max_length=500, description='Example description')
 
-    def model_dump(self) -> dict:
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-        }

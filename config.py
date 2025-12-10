@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings
 
 
 class Config(BaseSettings):
+    VERSION: str = 'v1'
     DEBUG: bool = True
     PROJECT_NAME: str = 'Tech API'
     SENTRY_DSN: str | None = None
