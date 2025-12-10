@@ -1,0 +1,32 @@
+---
+alwaysApply: true
+---
+
+Always use Python 3.13+ syntax.
+Avoid mutable default arguments.
+Keep functions short; one responsibility per function.
+Use type hints everywhere including function parameters, returns, variables, and class attributes.
+Prefer `|` for union types, not typing.Union and typing.Optional.
+Avoid wildcard imports. Use explicit imports.
+Avoid global state except constants.
+Prefer f-strings; avoid format() and % formatting.
+Use enum.Enum for constant groups.
+Use `dataclasses.dataclass` for pure data containers; use `slots=True` by default.
+
+Prefer fail-fast logic
+  - "Use fail-fast principle: validate inputs and error conditions immediately.",
+  - "Raise exceptions or return early instead of wrapping main logic inside nested if statements.",
+  - "Keep the main execution path flat and unindented.",
+  - "Use guard clauses for clarity, e.g., `if x is None: raise ValueError(...)`.",
+  - "Avoid deep nesting caused by deferred validation."
+
+Prefer walrus operator for inline assignment in conditions
+  - "Prefer walrus operator (:=) when a variable is assigned only for a single condition check.",
+  - "Example: use `if not (x := func()):` instead of separate assignment + condition.",
+  - "Use parentheses around (x := ...) for clarity.",
+  - "Avoid walrus operator when it makes the expression overly complex or reduces readability."
+
+Use asyncio for IO-heavy tasks and `async with`/`async for` patterns.
+Use Ruff style rules automatically for formatting.
+
+Google Python Style reference: https://google.github.io/styleguide/pyguide.html
