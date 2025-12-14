@@ -1,3 +1,4 @@
+import string
 from typing import Any
 
 from nanoid import generate
@@ -21,7 +22,8 @@ class NANOIDField(fields.Field[str]):
 
     @classmethod
     def nanoid(cls) -> str:
-        return generate(size=21, alphabet='123456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz')
+        alphabet = string.digits + string.ascii_letters
+        return generate(size=21, alphabet=alphabet)
 
 
 class TimestampMixin:
@@ -30,14 +32,7 @@ class TimestampMixin:
     deleted_at = fields.DatetimeField(null=True)
 
 
-class IdAbstractBaseModel(models.Model):
-    id = fields.IntField(primary_key=True)
-
-    class Meta:
-        abstract = True
-
-
-class GuidAbstractBaseModel(models.Model):
+class GuidMixin(models.Model):
     id = NANOIDField(primary_key=True)
 
     class Meta:

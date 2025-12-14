@@ -27,3 +27,7 @@ class BaseRouter(APIRouter):
 class DashRouter(APIRoute):
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return super().get_route_handler()
+
+class PublicRouter(APIRoute):
+    def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
+        return super().get_route_handler()

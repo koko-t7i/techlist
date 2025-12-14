@@ -18,7 +18,7 @@ class Config(BaseSettings):
     FRONTEND_HOST: str = 'http://localhost:5173'
     ENVIRONMENT: Literal['local', 'staging', 'production'] = 'local'
 
-    APP_MODELS: dict = {'models': ['app.models']}
+    APP_MODELS: dict = {'models': ['app.data']}
     POSTGRES_SERVER: str = 'localhost'
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str = 'postgres'

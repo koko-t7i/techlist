@@ -1,5 +1,5 @@
 from app.data import Example
-from app.models.example import CreateExampleParams, ExampleBase
+from app.model.example import CreateExampleParams, ExampleBase
 
 
 class ExampleManage:

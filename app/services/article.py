@@ -1,5 +1,5 @@
 from app.data.article import Article
-from app.models.article import GetArticleData, PlatfromData, TagData
+from app.model.article import GetArticleData, PlatfromData, TagData
 from app.services.base import Manager
 from logx import log
 

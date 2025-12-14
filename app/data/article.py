@@ -1,11 +1,13 @@
+import string
+
 import nanoid
-from tortoise import models, fields
+from tortoise import fields, models
 
 from app.constant import Platform
-from app.data.mixin import GuidAbstractBaseModel, TimestampMixin
+from app.data.mixin import GuidMixin, TimestampMixin
 
 
-class Article(GuidAbstractBaseModel, TimestampMixin):
+class Article(GuidMixin, TimestampMixin):
     title = fields.CharField(255)
     author = fields.CharField(128)
     summary = fields.TextField()
@@ -17,10 +19,11 @@ class Article(GuidAbstractBaseModel, TimestampMixin):
 
     @classmethod
     def generate_aid(cls) -> str:
-        return nanoid.generate(alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', size=21)
+        alphabet = string.digits + string.ascii_letters
+        return nanoid.generate(alphabet=alphabet, size=21)
 
 
-class ArticlePlatform(GuidAbstractBaseModel, TimestampMixin):
+class ArticlePlatform(GuidMixin, TimestampMixin):
     article = fields.ForeignKeyField('models.Article', related_name='platforms')
     name = fields.CharEnumField(Platform)
     url = fields.CharField(255, null=True)
@@ -31,7 +34,7 @@ class ArticlePlatform(GuidAbstractBaseModel, TimestampMixin):
         unique_together = (('article', 'platform'),)
 
 
-class Tag(GuidAbstractBaseModel, models.Model):
+class Tag(GuidMixin):
     name = fields.CharField(50, unique=True)
     articles: fields.ReverseRelation['ArticleTag']
 
